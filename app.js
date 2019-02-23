@@ -23,6 +23,30 @@ app.use('/products',productRoute);
 app.use('/orders',orderRoute);
 
 
+//URL ERROR HANDLING
+app.use((req, res, next)=>{
+    //ERROR OBJECT IS AVAILABLE BY DEFAULT
+    const error = new Error('Not found');
+    error.status = 404;
+    // NEXT WILL FORWARD THE ERROR REQUEST INSTAND OF ORIGINAL ONE
+    next(error);
+});
+
+
+//THIS WILL HANDLE ALL KIND OF ERROR
+// ERROR THOROWS FROM ANYWARE ELSE FROM THE APPLICATION
+// THIS WILL NOT HAPPEN YET
+// EXAMPLE THIS ERROR WILL HAPPEN WHEN I ADD DATABASE
+app.use((error, req, res, next)=>{
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    })
+});
+
+
 
 // WE ARE WORKING WITH EXPRESS BUT WE ARE NOT MAKING SERVER HERE
 module.exports = app;
