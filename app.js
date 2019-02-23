@@ -3,14 +3,14 @@ const express = require('express');
 
 const app = express();
 
+//REQUEST ARE FORWAREDED
+const productRoute = require('./api/routes/products');
+
+
 
 // next use move the request to the next middleware
 //INCOMING REQUEST GO THOUGH APP
-app.use((req, res, next )=>{
-    res.status(200).json({
-        message: 'it works'
-    });
-});
+app.use('/products',productRoute);
 
 
 // WE ARE WORKING WITH EXPRESS BUT WE ARE NOT MAKING SERVER HERE
