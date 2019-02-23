@@ -9,8 +9,12 @@ const app = express();
 // BY USING MORGAN WHEN WE REQUESTWE CAN SEE EXTRA LOG SING IN TERMINAL WHEN NODEMON RUNNING
 // funnel all request though morgan
 app.use(morgan('dev')); // FORMAT FOR OUTPUT
-app.use(bodyParser.urlencoded({extended: false})); // TRUE ALL EXTENDED BODY WITH REACH DATA. FALSE FOR ONLY SUPPORT URL ENCODDED DATA
+app.use(bodyParser.urlencoded({
+    extended: false
+})); // TRUE ALL EXTENDED BODY WITH REACH DATA. FALSE FOR ONLY SUPPORT URL ENCODDED DATA
 app.use(bodyParser.json());
+
+
 
 
 
@@ -21,15 +25,37 @@ const orderRoute = require('./api/routes/orders');
 
 
 
+
+
+app.use((req, res, next) => {
+    // * FOR ALLOW ANYTHIN
+    res.header('Access-Control-Allow-Origin', "*");
+    // PARTICULAR HEADER APPENDED TO INCOMMING REQUEST
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    //OPTIONS REQUEST IS FOR FINDING OUT WHICH REQUEST WE HAVE
+    // BROWSER WILL ALWAYS SEND AN OPTIONS REQUEST FIRST 
+    //METHOD IS A PROPERTY WHICH ASSCESS TO THE HTTP METHOD USED ON THE REQUEST
+    if (req.method === "OPTIONS") {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+        return res.status(200).json({});
+    }
+    next();
+});
+
+
+
+
+
+
 // next use move the request to the next middleware
 //INCOMING REQUEST GO THOUGH APP
 // ROUTE WHICH SHOULD HANDLE REQUEST
-app.use('/products',productRoute);
-app.use('/orders',orderRoute);
+app.use('/products', productRoute);
+app.use('/orders', orderRoute);
 
 
 //URL ERROR HANDLING
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
     //ERROR OBJECT IS AVAILABLE BY DEFAULT
     const error = new Error('Not found');
     error.status = 404;
@@ -42,7 +68,7 @@ app.use((req, res, next)=>{
 // ERROR THOROWS FROM ANYWARE ELSE FROM THE APPLICATION
 // THIS WILL NOT HAPPEN YET
 // EXAMPLE THIS ERROR WILL HAPPEN WHEN I ADD DATABASE
-app.use((error, req, res, next)=>{
+app.use((error, req, res, next) => {
     res.status(error.status || 500);
     res.json({
         error: {
