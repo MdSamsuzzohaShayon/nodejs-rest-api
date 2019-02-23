@@ -1,0 +1,28 @@
+{
+  "name": "node-rest-shop",
+  "version": "1.0.0",
+  "description": "A nodejs resful api tutorial project (Build a simple shop)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MdSamsuzzohaShayon/nodejs-rest-api.git"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "api"
+  ],
+  "author": "Shayon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MdSamsuzzohaShayon/nodejs-rest-api/issues"
+  },
+  "homepage": "https://github.com/MdSamsuzzohaShayon/nodejs-rest-api#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
