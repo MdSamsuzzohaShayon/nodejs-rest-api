@@ -8,7 +8,8 @@ computer systems on the Internet.
 REST or RESTful API design (Representational State Transfer) is designed to take advantage 
 of existing protocols. While REST can be used over nearly any protocol, it usually takes 
 advantage of HTTP when used for Web APIs.
-(essential website for learning rest api or referance of rest api)[https://www.restapitutorial.com/]
+
+[essential website for learning rest api or referance of rest api](https://www.restapitutorial.com/)
 
 
 ## postman
@@ -26,4 +27,4 @@ http://localhost:5000/orders/id
 
 ## http status code
 
-(all code)[https://www.restapitutorial.com/httpstatuscodes.html]
+[all code](https://www.restapitutorial.com/httpstatuscodes.html)
