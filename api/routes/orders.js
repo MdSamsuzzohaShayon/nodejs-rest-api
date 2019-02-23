@@ -9,9 +9,14 @@ router.get('/', (req, res, next)=>{
 
 
 router.post('/', (req, res, next)=>{
+    const order = {
+        productId: req.body.productId,
+        quantity: req.body.quantity
+    }
     //The request has been fulfilled and resulted in a new resource being created.
     res.status(201).json({
-        message: 'order was created'
+        message: 'order was created',
+        order: order
     });
 });
 

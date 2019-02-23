@@ -25,6 +25,28 @@ http://localhost:5000/orders
 http://localhost:5000/orders/id
 ```
 
+make a post request 
+```
+http://localhost:5000/products
+http://localhost:5000/orders
+```
+body-> row -> JSON(application.json).
+#### for products
+```
+{
+    "name" : "happy potter",
+    "price" : 30
+}
+```
+#### for orders
+```
+{
+    "productId" : "jjhjheu23j3h45jbhb5_j/df",
+    "quantity" : "10"
+}
+```
+
+
 ## http status code
 
 [all code](https://www.restapitutorial.com/httpstatuscodes.html)
@@ -40,4 +62,15 @@ see the result in terminal when we request something
 
 ```
 npm install morgan
+```
+
+## body parser
+
+parse the body of incoming request. body-parser doesn''t support files.
+but it uspport url encoded bodies and json. 
+Node.js body parsing middleware.
+Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+
+```
+npm install body-parser
 ```

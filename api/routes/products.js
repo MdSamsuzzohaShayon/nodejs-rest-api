@@ -13,9 +13,14 @@ router.get('/', (req, res, next)=>{
 
 // REQUEST FOR CREATE DATA
 router.post('/', (req, res, next)=>{
+    const product = {
+        name: req.body.name,
+        price: req.body.price
+    }
     //The request has been fulfilled and resulted in a new resource being created.
     res.status(201).json({
-        message: "Handling POST tequests to /products"
+        message: "Handling POST tequests to /products",
+        createdProduct: product
     });
 });
 
