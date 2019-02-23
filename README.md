@@ -9,3 +9,12 @@ REST or RESTful API design (Representational State Transfer) is designed to take
 of existing protocols. While REST can be used over nearly any protocol, it usually takes 
 advantage of HTTP when used for Web APIs.
 
+
+## postman
+
+give the url first
+pass url in past man
+```
+http://localhost:5000/products/id
+http://localhost:5000/products/special
+```
