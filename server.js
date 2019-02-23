@@ -5,7 +5,7 @@ const app = require('./app');
 
 
 //process env port is for deployment port number
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 const server  = http.createServer(app);
 server.listen(port);

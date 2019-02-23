@@ -45,16 +45,27 @@ router.post('/', (req, res, next) => {
 // REQUEST FOR SHOWING DATA OR GETTING DATA OF A PARTICULAR OBJECT 
 router.get('/:productId', (req, res, next) => {
     const id = req.params.productId;
-    if (id === 'special') {
-        res.status(200).json({
-            message: 'you descovered the special id',
-            id
+    // if (id === 'special') {
+    //     res.status(200).json({
+    //         message: 'you descovered the special id',
+    //         id
+    //     })
+    // } else {
+    //     res.status(200).json({
+    //         message: 'You passed an id'
+    //     });
+    // }
+
+    Product.findById(id)
+        .exec()
+        .then(doc => {
+            console.log(doc);
+            res.status(200).json(doc);
         })
-    } else {
-        res.status(200).json({
-            message: 'You passed an id'
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
         });
-    }
 });
 
 

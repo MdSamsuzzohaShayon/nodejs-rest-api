@@ -46,11 +46,16 @@ body-> row -> JSON(application.json).
 }
 ```
 #### save products data to database
+`http://localhost:3000/products`
 ```
 {
     "name": "Harry Potter",
     "price": 299
 }
+```
+#### find data by id
+```
+http://localhost:3000/products/5c71bdcd3010fb0880f1ce3a
 ```
 
 
