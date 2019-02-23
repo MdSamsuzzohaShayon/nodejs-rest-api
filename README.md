@@ -81,3 +81,24 @@ npm install body-parser
 CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 
 ```npm install cors```
+
+
+## MongoDB Atlas
+ - Sign In
+ - Create a new project
+ - Create a new cluster 
+ - AWS -> any country with free tier available
+ - cluster tier -> M0
+ - name the cluster
+ - security -> add new user
+ - New clusters take between 7-10 minutes to provision.
+ - user name and password is "admin"
+ - security -> whitelist ip
+ - overview -> connect - connect your application -> 
+ - copy standard connection string
+ - view driver connection examples -> node 
+ - (we can follow thein instrucion or we can use mongoose)
+
+## nodemon.json 
+
+this is for password setup for production

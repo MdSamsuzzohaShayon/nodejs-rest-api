@@ -2,8 +2,25 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+
+
+
+
+//REQUEST ARE FORWAREDED
+const productRoute = require('./api/routes/products');
+const orderRoute = require('./api/routes/orders');
+
+
+// ENTERING PASSWORD FOR PRODUCTION
+mongoose.connect("mongodb://admin:"+process.env.MONGO_ATLAS_PW+"@rest-api-shop-shard-00-00-zh1ls.mongodb.net:27017,rest-api-shop-shard-00-01-zh1ls.mongodb.net:27017,rest-api-shop-shard-00-02-zh1ls.mongodb.net:27017/test?ssl=true&replicaSet=rest-api-shop-shard-0&authSource=admin&retryWrites=true", {
+    useMongoClient: true // UNDER THE HOOD IT WILL USE MONGO DB CLIENT
+});
+
+
+
 
 
 // BY USING MORGAN WHEN WE REQUESTWE CAN SEE EXTRA LOG SING IN TERMINAL WHEN NODEMON RUNNING
@@ -16,11 +33,6 @@ app.use(bodyParser.json());
 
 
 
-
-
-//REQUEST ARE FORWAREDED
-const productRoute = require('./api/routes/products');
-const orderRoute = require('./api/routes/orders');
 
 
 
