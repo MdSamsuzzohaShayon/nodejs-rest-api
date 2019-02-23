@@ -4,8 +4,8 @@
   "description": "A nodejs resful api tutorial project (Build a simple shop)",
   "main": "server.js",
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon app"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",

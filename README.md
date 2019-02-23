@@ -45,6 +45,15 @@ body-> row -> JSON(application.json).
     "quantity" : "10"
 }
 ```
+#### save products data to database
+```
+{
+    "name": "Harry Potter",
+    "price": 299
+}
+```
+
+
 
 
 ## http status code
