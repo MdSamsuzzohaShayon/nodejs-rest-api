@@ -6,9 +6,20 @@ const Product = require('../models/product');
 
 // REQUEST FOR SHOWING DATA OR GETTING DATA
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: "Handling GET tequests to /products"
-    });
+    //IF ID DON'T PASS ANY ARGUMENT IT WILL FIND ALL ELEMENTS
+    // TO GET TRUE PROMISE
+    Product.find()
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
 });
 
 
@@ -64,10 +75,12 @@ router.get('/:productId', (req, res, next) => {
         .exec()
         .then(doc => {
             console.log(doc);
-            if(doc){
+            if (doc) {
                 res.status(200).json(doc);
-            }else{
-            res.status(404).json({message: "no valid enty found for provided id"});
+            } else {
+                res.status(404).json({
+                    message: "no valid enty found for provided id"
+                });
             }
         })
         .catch(err => {
