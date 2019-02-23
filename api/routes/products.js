@@ -31,12 +31,16 @@ router.post('/', (req, res, next) => {
     //SAVE INTO THE DATABASE
     product.save().then(result => {
         console.log(result);
-    }).catch(err => console.log(err));
-
-    //The request has been fulfilled and resulted in a new resource being created.
-    res.status(201).json({
-        message: "Handling POST tequests to /products",
-        createdProduct: product
+        //The request has been fulfilled and resulted in a new resource being created.
+        res.status(201).json({
+            message: "Handling POST tequests to /products",
+            createdProduct: result
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
     });
 });
 
@@ -60,11 +64,17 @@ router.get('/:productId', (req, res, next) => {
         .exec()
         .then(doc => {
             console.log(doc);
-            res.status(200).json(doc);
+            if(doc){
+                res.status(200).json(doc);
+            }else{
+            res.status(404).json({message: "no valid enty found for provided id"});
+            }
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({error: err});
+            res.status(500).json({
+                error: err
+            });
         });
 });
 
