@@ -28,3 +28,16 @@ http://localhost:5000/orders/id
 ## http status code
 
 [all code](https://www.restapitutorial.com/httpstatuscodes.html)
+
+## morgan
+
+HTTP request logger middleware for node.js
+
+behind the scene morgan will call the next function that dont't 
+return response just locked something.
+see the result in terminal when we request something
+
+
+```
+npm install morgan
+```
