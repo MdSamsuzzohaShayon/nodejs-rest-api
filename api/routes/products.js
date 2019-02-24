@@ -24,9 +24,14 @@ router.get('/', (req, res, next) => {
     //IF ID DON'T PASS ANY ARGUMENT IT WILL FIND ALL ELEMENTS
     // TO GET TRUE PROMISE
     Product.find()
+        .select('name price _id') // DEFINE WHICH FIELD TO SELECT
         .exec()
         .then(docs => {
-            console.log(docs);
+            // console.log(docs);
+            const response = {
+                count: docs.length,
+                products: docs
+            }
             // if (docs.length >= 0) {
             res.status(200).json(docs);
             // }else{
