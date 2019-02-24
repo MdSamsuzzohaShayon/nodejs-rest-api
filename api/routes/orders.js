@@ -1,18 +1,39 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
-router.get('/', (req, res, next)=>{
+const Order = require('../models/order');
+
+
+
+
+router.get('/', (req, res, next) => {
     res.status(200).json({
         message: 'order ware fatched'
     });
 });
 
 
-router.post('/', (req, res, next)=>{
-    const order = {
-        productId: req.body.productId,
-        quantity: req.body.quantity
-    }
+router.post('/', (req, res, next) => {
+    const order = new Order({
+        _id: mongoose.Types.ObjectId(),
+        quantity: req.body.quantity,
+        product: req.body.productId
+    });
+
+    order.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+
+
     //The request has been fulfilled and resulted in a new resource being created.
     res.status(201).json({
         message: 'order was created',
@@ -20,7 +41,7 @@ router.post('/', (req, res, next)=>{
     });
 });
 
-router.get('/:orderId', (req, res, next)=>{
+router.get('/:orderId', (req, res, next) => {
     res.status(200).json({
         message: 'order details',
         orderId: req.params.orderId
@@ -28,7 +49,7 @@ router.get('/:orderId', (req, res, next)=>{
 });
 
 
-router.delete('/:orderId', (req, res, next)=>{
+router.delete('/:orderId', (req, res, next) => {
     res.status(200).json({
         message: 'order deleted',
         orderId: req.params.orderId

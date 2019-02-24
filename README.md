@@ -131,3 +131,16 @@ this is for password setup for production
 
 
 Create descriptive api if I plan to use them pbulically
+
+
+## postman order request
+
+#### create order
+```
+{
+	"productId": "5c72e6a218152416007fff3a",
+	"quantity": "2"
+}
+```
+
+if i don't pass quantity it will give default euantity 1
