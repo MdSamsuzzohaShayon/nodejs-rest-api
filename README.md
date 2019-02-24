@@ -144,3 +144,11 @@ Create descriptive api if I plan to use them pbulically
 ```
 
 if i don't pass quantity it will give default euantity 1
+
+#### store data
+
+```
+{
+"productId": "5c72f8c1eb666b2c346a1d26"
+}
+```
