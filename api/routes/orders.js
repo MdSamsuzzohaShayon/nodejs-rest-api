@@ -8,9 +8,17 @@ const Order = require('../models/order');
 
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'order ware fatched'
-    });
+    Order.find()
+        .exec()
+        .then(docs =>{
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
 });
 
 
