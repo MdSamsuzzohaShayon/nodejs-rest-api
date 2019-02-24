@@ -4,6 +4,21 @@ const mongoose = require('mongoose');
 const Product = require('../models/product');
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // REQUEST FOR SHOWING DATA OR GETTING DATA
 router.get('/', (req, res, next) => {
     //IF ID DON'T PASS ANY ARGUMENT IT WILL FIND ALL ELEMENTS
@@ -27,6 +42,23 @@ router.get('/', (req, res, next) => {
             })
         });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // REQUEST FOR CREATE DATA
@@ -60,6 +92,18 @@ router.post('/', (req, res, next) => {
         });
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,6 +143,19 @@ router.get('/:productId', (req, res, next) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // REQUEST FOR UPDATE 
 router.patch('/:productId', (req, res, next) => {
     // res.status(200).json({
@@ -135,6 +192,22 @@ router.patch('/:productId', (req, res, next) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // REQUEST FOR DELETE SOMETHING
 router.delete('/:productId', (req, res, next) => {
     const id = req.params.productId
@@ -152,6 +225,13 @@ router.delete('/:productId', (req, res, next) => {
             });
         });
 });
+
+
+
+
+
+
+
 
 
 
