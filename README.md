@@ -64,6 +64,12 @@ http://localhost:3000/products/5c71bdcd3010fb0880f1ce3a
 	{"propName": "name" , "value": "harry potter 7 "	}
 ]
 ```
+``
+[
+	{"propName": "name", "value": "Something more useful"}	
+]
+``
+
 
 
 
@@ -122,3 +128,6 @@ CORS is a node.js package for providing a Connect/Express middleware that can be
 ## nodemon.json 
 
 this is for password setup for production
+
+
+Create descriptive api if I plan to use them pbulically

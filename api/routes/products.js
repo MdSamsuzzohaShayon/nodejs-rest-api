@@ -109,7 +109,7 @@ router.post('/', (req, res, next) => {
                 _id: result._id,
                 request: {
                     type: 'GET',
-                    url: 'http://localhost/products'+ result._id
+                    url: 'http://localhost/products' + result._id
                 }
             }
         });
@@ -150,11 +150,20 @@ router.get('/:productId', (req, res, next) => {
     // }
 
     Product.findById(id)
+        .select('name price _id')
         .exec()
         .then(doc => {
-            console.log(doc);
+            // console.log(doc);
+            console.log('from db: '+ doc);
             if (doc) {
-                res.status(200).json(doc);
+                res.status(200).json({
+                    product: doc,
+                    request: {
+                        type: "GET",
+                        description: "Get all poduct",
+                        url: 'http://localhost:3000/products'
+                    }
+                });
             } else {
                 res.status(404).json({
                     message: "no valid enty found for provided id"
@@ -209,8 +218,14 @@ router.patch('/:productId', (req, res, next) => {
         })
         .exec()
         .then(result => {
-            console.log(result);
-            res.status(200).json(result)
+            // console.log(result);
+            res.status(200).json({
+                message: 'Product Updated',
+                request: {
+                    type: "GET",
+                    url: 'http://localhost:3000/products/'+ id
+                }
+            })
         })
         .catch(err => {
             console.log(500)
