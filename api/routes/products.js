@@ -28,12 +28,27 @@ router.get('/', (req, res, next) => {
         .exec()
         .then(docs => {
             // console.log(docs);
+            //GET COUNT FIELD
             const response = {
                 count: docs.length,
-                products: docs
+                products: docs.map(doc => {
+                    return{
+                        // DO SAME THING WITH SPRADE OPERATOR
+                        // ...doc
+                        name : doc.name,
+                        price: doc.price,
+                        _id: doc._id,
+                        url: {
+                            request: {
+                                type: 'GET',
+                                url: 'http://localhost:3000/products/' + doc._id
+                            }
+                        }
+                    }
+                })
             }
             // if (docs.length >= 0) {
-            res.status(200).json(docs);
+            res.status(200).json(response);
             // }else{
             //     res.status(404).json({
             //         message: 'No entries Found'
