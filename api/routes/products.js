@@ -32,10 +32,10 @@ router.get('/', (req, res, next) => {
             const response = {
                 count: docs.length,
                 products: docs.map(doc => {
-                    return{
+                    return {
                         // DO SAME THING WITH SPRADE OPERATOR
                         // ...doc
-                        name : doc.name,
+                        name: doc.name,
                         price: doc.price,
                         _id: doc._id,
                         url: {
@@ -102,8 +102,16 @@ router.post('/', (req, res, next) => {
         console.log(result);
         //The request has been fulfilled and resulted in a new resource being created.
         res.status(201).json({
-            message: "Handling POST tequests to /products",
-            createdProduct: result
+            message: "Created product successfully",
+            createdProduct: {
+                name: result.name,
+                price: result.price,
+                _id: result._id,
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost/products'+ result._id
+                }
+            }
         });
     }).catch(err => {
         console.log(err);
@@ -204,9 +212,9 @@ router.patch('/:productId', (req, res, next) => {
             console.log(result);
             res.status(200).json(result)
         })
-        .catch(err =>{
+        .catch(err => {
             console.log(500)
-            .json({})
+                .json({})
         });
 });
 
