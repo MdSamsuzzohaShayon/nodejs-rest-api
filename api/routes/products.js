@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
         .then(docs => {
             console.log(docs);
             // if (docs.length >= 0) {
-                res.status(200).json(docs);
+            res.status(200).json(docs);
             // }else{
             //     res.status(404).json({
             //         message: 'No entries Found'
@@ -101,9 +101,36 @@ router.get('/:productId', (req, res, next) => {
 
 // REQUEST FOR UPDATE 
 router.patch('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: "Updated product"
-    });
+    // res.status(200).json({
+    //     message: "Updated product"
+    // });
+
+    const id = req.params.productId;
+    const updateOps = {};
+
+    //THIS WILL GIVE US AN OBJECT
+    for (const ops of req.body) {
+        updateOps[ops.propName] = ops.value;
+    }
+
+    Product.update({
+            _id: id
+        }, {
+            $set: updateOps
+            /*{ //$set() UNDERSTOOD BY MONGOOSE (INSTAND OF WRITING updateOps we can write this code)
+            name: req.body.newName,
+            price: req.body.newPrice
+        }*/
+        })
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result)
+        })
+        .catch(err =>{
+            console.log(500)
+            .json({})
+        });
 });
 
 

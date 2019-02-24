@@ -58,6 +58,12 @@ body-> row -> JSON(application.json).
 http://localhost:3000/products/5c71bdcd3010fb0880f1ce3a
 ```
 
+#### patch update request
+```
+[
+	{"propName": "name" , "value": "harry potter 7 "	}
+]
+```
 
 
 
