@@ -32,14 +32,12 @@ router.post('/', (req, res, next) => {
                 error: err
             });
         });
-
-
-    //The request has been fulfilled and resulted in a new resource being created.
-    res.status(201).json({
-        message: 'order was created',
-        order: order
-    });
 });
+
+
+
+
+
 
 router.get('/:orderId', (req, res, next) => {
     res.status(200).json({

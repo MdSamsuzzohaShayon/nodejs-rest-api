@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // get product and quantity
 const orderSchema = mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
+    _id: mongoose.Schema.Types.ObjectId,
     product: {
         // UNLIKE SQL THIS IS NON RELATIONAL DATABASE SO IT HAS SOME DISADVANTAGES
         //CONNECT THIS SCHEMA WITH PRODUCT
