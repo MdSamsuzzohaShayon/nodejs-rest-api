@@ -48,9 +48,9 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     //CHECK FOR PRODUCT BEFORE SAVE
     Product.findById(req.body.productId)
-    // CECKING FOR INVALID PRODUCT ID
+        // CECKING FOR INVALID PRODUCT ID
         .then(product => {
-            if(!product){
+            if (!product) {
                 return res.status(404).json({
                     message: 'Product not found'
                 })
@@ -101,10 +101,22 @@ router.post('/', (req, res, next) => {
 
 
 router.get('/:orderId', (req, res, next) => {
-    res.status(200).json({
-        message: 'order details',
-        orderId: req.params.orderId
-    });
+    Order.findById(req.params.orderId)
+        .exec()
+        .then(order => {
+            res.status(200).json({
+                order: order,
+                request: {
+                    type: "GET",
+                    url: 'http:localhost:3000/orders'
+                }
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
 });
 
 
