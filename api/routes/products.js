@@ -1,11 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Product = require('../models/product');
+
 const multer = require('multer');
-const upload = multer({dest: "uploads/"}); // FOLDER FOR STORE IMAGE
+//STORAGE STRATEGY OR HOW OUR FILE GET STORED
+const storage = multer.diskStorage({
+    // WHERE INCOMING FILE SHOULD BE STORE
+    destination : function(req, file, cb){
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb){
+        cb(null, new Date().toISOString().replace(/:/g, '-')+ file.originalname);
+    }
+});
 
 
+const upload = multer({storage: storage}); // FOLDER FOR STORE IMAGE
+
+// const upload = multer({dest: "uploads/"}); // FOLDER FOR STORE IMAGE
+
+const Product = require('../models/product');
 
 
 
