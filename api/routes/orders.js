@@ -11,6 +11,7 @@ const Product = require('../models/product');
 router.get('/', (req, res, next) => {
     Order.find()
         .select('product quantity _id')
+        .populate('product', 'name') //MARGE ORDER INFO AND GET PRODUCT ALL INFO RATHER THAN ONLY ID
         .exec()
         .then(docs => {
             res.status(200).json({
@@ -18,7 +19,7 @@ router.get('/', (req, res, next) => {
                 orders: docs.map(doc => {
                     return {
                         _id: doc._id,
-                        product: doc.productId,
+                        product: doc.product,
                         quantity: doc.quantity,
                         request: {
                             type: 'GET',
@@ -102,9 +103,10 @@ router.post('/', (req, res, next) => {
 
 router.get('/:orderId', (req, res, next) => {
     Order.findById(req.params.orderId)
+        .populate('product') //MARGE ORDER INFO AND GET PRODUCT ALL INFO RATHER THAN ONLY ID
         .exec()
         .then(order => {
-            if(!order){
+            if (!order) {
                 return res.status(404).json({
                     message: "order not found"
                 });
@@ -142,8 +144,8 @@ router.delete('/:orderId', (req, res, next) => {
         .then(result => {
             res.status(200).json({
                 message: "order deleted",
-                request:{
-                    type:'POST',
+                request: {
+                    type: 'POST',
                     url: 'http://localhost:3000/orders',
                     body: {
                         productId: 'ID',
