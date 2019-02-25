@@ -25,6 +25,7 @@ mongoose.Promise = global.Promise;
 // BY USING MORGAN WHEN WE REQUESTWE CAN SEE EXTRA LOG SING IN TERMINAL WHEN NODEMON RUNNING
 // funnel all request though morgan
 app.use(morgan('dev')); // FORMAT FOR OUTPUT
+app.use('/uploads',express.static('uploads'));
 app.use(bodyParser.urlencoded({
     extended: false
 })); // TRUE ALL EXTENDED BODY WITH REACH DATA. FALSE FOR ONLY SUPPORT URL ENCODDED DATA

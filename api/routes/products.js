@@ -61,7 +61,7 @@ router.get('/', (req, res, next) => {
     //IF ID DON'T PASS ANY ARGUMENT IT WILL FIND ALL ELEMENTS
     // TO GET TRUE PROMISE
     Product.find()
-        .select('name price _id') // DEFINE WHICH FIELD TO SELECT
+        .select('name price _id productImage') // DEFINE WHICH FIELD TO SELECT
         .exec()
         .then(docs => {
             // console.log(docs);
@@ -74,6 +74,7 @@ router.get('/', (req, res, next) => {
                         // ...doc
                         name: doc.name,
                         price: doc.price,
+                        productImage: doc.productImage ,
                         _id: doc._id,
                         url: {
                             request: {
@@ -131,7 +132,8 @@ router.post('/', upload.single('productImage'), (req, res, next) => {
         //THIS WILL AUTO CREATE ID AND GIVE THAT ID
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price: req.body.price
+        price: req.body.price,
+        productImage: req.file.path // GETTING THIS PATH FROM MULTER// REQ IS ALSO FROM MULTER
     });
 
 
@@ -188,7 +190,7 @@ router.get('/:productId', (req, res, next) => {
     // }
 
     Product.findById(id)
-        .select('name price _id')
+        .select('name price _id productImage')
         .exec()
         .then(doc => {
             // console.log(doc);

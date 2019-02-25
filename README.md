@@ -174,4 +174,6 @@ url http://localhost:3000/product
  - 3rd key productImage -> make it file type
  - in value upload an image
  - if we make a post request we will have an upload folder with a new file
- - 
+ 
+ paste this url in browser. this url we can get from console
+ http://localhost:3000/2019-02-25T14-52-22.919ZScreenshot%20(28).png
