@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Product = require('../models/product');
+const multer = require('multer');
+const upload = multer({dest: "uploads/"}); // FOLDER FOR STORE IMAGE
 
 
 
@@ -82,7 +84,8 @@ router.get('/', (req, res, next) => {
 
 
 // REQUEST FOR CREATE DATA
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('productImage'), (req, res, next) => {
+    console.log(req.file);
     // const product = {
     //     name: req.body.name,
     //     price: req.body.price

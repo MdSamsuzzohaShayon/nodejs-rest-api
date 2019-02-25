@@ -152,3 +152,26 @@ if i don't pass quantity it will give default euantity 1
 "productId": "5c72f8c1eb666b2c346a1d26"
 }
 ```
+
+## multer
+
+Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency.
+
+multer is like body parser can parse body. In some case body parser can't 
+handle there we can use multer
+
+```
+npm install multer
+```
+
+## postman
+
+make a post request for uploading image
+url http://localhost:3000/product
+ - Headers -> uncheck checkbox
+ - Body -> form-data (radio button)
+ - fill key value for price and name
+ - 3rd key productImage -> make it file type
+ - in value upload an image
+ - if we make a post request we will have an upload folder with a new file
+ - 
