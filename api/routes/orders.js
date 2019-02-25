@@ -44,19 +44,23 @@ router.get('/', (req, res, next) => {
 
 
 
-
+//CREATING NEW ORDER AND RETURNING RESPONSE
 router.post('/', (req, res, next) => {
     //CHECK FOR PRODUCT BEFORE SAVE
     Product.findById(req.body.productId)
+    // CECKING FOR INVALID PRODUCT ID
         .then(product => {
+            if(!product){
+                return res.status(404).json({
+                    message: 'Product not found'
+                })
+            }
             const order = new Order({
                 _id: mongoose.Types.ObjectId(),
                 quantity: req.body.quantity,
                 product: req.body.productId
             });
-
             return order.save()
-
         })
         .then(result => {
             console.log(result);
@@ -79,6 +83,17 @@ router.post('/', (req, res, next) => {
             });
         });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
