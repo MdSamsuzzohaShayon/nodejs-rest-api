@@ -6,16 +6,37 @@ const multer = require('multer');
 //STORAGE STRATEGY OR HOW OUR FILE GET STORED
 const storage = multer.diskStorage({
     // WHERE INCOMING FILE SHOULD BE STORE
-    destination : function(req, file, cb){
+    destination: function (req, file, cb) {
         cb(null, './uploads/');
     },
-    filename: function(req, file, cb){
-        cb(null, new Date().toISOString().replace(/:/g, '-')+ file.originalname);
+    // HERE SET THE FILE NAME FOR UPLOAD FILE
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
     }
 });
 
 
-const upload = multer({storage: storage}); // FOLDER FOR STORE IMAGE
+//ADDING CUSTOM FILTER FOR UPLOAD IMAGE
+const fileFilter = (req, file, cb) => {
+    
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        //ACCEPT A FILE
+        cb(null, true);
+    } else {
+        // REJECT A FILE
+        cb(null, false);
+    }
+}
+
+
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5 //  5mb file size
+    },
+    fileFilter: fileFilter
+}); // FOLDER FOR STORE IMAGE
 
 // const upload = multer({dest: "uploads/"}); // FOLDER FOR STORE IMAGE
 
@@ -171,7 +192,7 @@ router.get('/:productId', (req, res, next) => {
         .exec()
         .then(doc => {
             // console.log(doc);
-            console.log('from db: '+ doc);
+            console.log('from db: ' + doc);
             if (doc) {
                 res.status(200).json({
                     product: doc,
@@ -240,7 +261,7 @@ router.patch('/:productId', (req, res, next) => {
                 message: 'Product Updated',
                 request: {
                     type: "GET",
-                    url: 'http://localhost:3000/products/'+ id
+                    url: 'http://localhost:3000/products/' + id
                 }
             })
         })
